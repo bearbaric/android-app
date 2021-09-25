@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.unity3d.player.UnityPlayerActivity;
 
 import java.io.IOException;
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -52,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
             toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
             surfaceView = findViewById(R.id.surface_view);
             barcodeText = findViewById(R.id.barcode_text);
+
+            Button button = findViewById(R.id.clickbutton);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, UnityHolderActivity.class);
+                    startActivity(intent);
+                }
+            });
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 

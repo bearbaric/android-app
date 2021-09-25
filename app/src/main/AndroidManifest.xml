@@ -2,14 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.barcodescanner">
 
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
 
     <application
         android:allowBackup="true"
@@ -18,20 +16,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BarcodeScanner">
-        //tools:ignore="GoogleAppIndexingWarning">
-
-        <!--<provider
+        <activity
+            android:name=".UnityHolderActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ButtonActivity"
+            android:exported="true" />
+        <!--
+        <provider
             &lt;!&ndash;android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.barcodescanner.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">&ndash;&gt;
 
-        </provider>-->
+        </provider>
+        -->
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,6 +45,5 @@
             </intent-filter>
         </activity>
     </application>
-
 
 </manifest>
