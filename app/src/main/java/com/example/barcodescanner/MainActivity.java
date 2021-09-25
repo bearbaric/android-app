@@ -1,5 +1,6 @@
 package com.example.barcodescanner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -8,15 +9,21 @@ import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 
@@ -32,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         private TextView barcodeText;
         private String barcodeData;
 
+        private FirebaseFirestore db;
+
 
 
         @Override
@@ -41,6 +50,27 @@ public class MainActivity extends AppCompatActivity {
             toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
             surfaceView = findViewById(R.id.surface_view);
             barcodeText = findViewById(R.id.barcode_text);
+            
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("produkte")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    //Log.d(TAG, document.getId() + " => " + document.getData());
+                                    System.out.println("**************************************************************************");
+                                    System.out.println(document.getData());
+                                }
+                            } else {
+                                //Log.w(TAG, "Error getting documents.", task.getException());
+                                System.out.println("**************************************************************************");
+                                System.out.println(task.getException());
+                            }
+                        }
+                    });
+
             initialiseDetectorsAndSources();
         }
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "745895909865",
+    "project_id": "ethsg-hackzurich-21-65971",
+    "storage_bucket": "ethsg-hackzurich-21-65971.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745895909865:android:88d2ced1191a77d2c3d378",
+        "android_client_info": {
+          "package_name": "com.example.barcodescanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745895909865-ghn6j7qjskikbsa0vh8ikuplht1c47fa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVIPBwDubMUE3Xbpc-iQ8JJ8n1N6FE_QI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745895909865-ghn6j7qjskikbsa0vh8ikuplht1c47fa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
