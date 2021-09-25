@@ -21,7 +21,9 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -50,8 +52,15 @@ public class MainActivity extends AppCompatActivity {
             toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
             surfaceView = findViewById(R.id.surface_view);
             barcodeText = findViewById(R.id.barcode_text);
-            
+
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+           /* CollectionReference citiesRef = db.collection("produkte");
+            Query query = citiesRef.whereEqualTo("test", "SUCCESFUL");
+            System.out.println("**************************************************************************");
+            System.out.println(query);*/
+
+
             db.collection("produkte")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
